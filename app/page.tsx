@@ -32,7 +32,26 @@ export default function Page() {
       const genAI = new GoogleGenerativeAI(apiKey)
       const model = genAI.getGenerativeModel({ model: "gemini-3-flash-preview" })
 
-      const fullPrompt = `Aşağıdaki konsept için Pinterest aramalarında kullanılabilecek, estetik ve hedeflenmiş anahtar kelimeler oluştur. Sadece anahtar kelimeleri virgülle ayrılmış bir liste olarak döndür. Başlık veya açıklama ekleme. Konsept: ${prompt}`
+      const fullPrompt = `Act as a senior art director and trend-aware visual strategist with deep expertise in branding, editorial design, and digital aesthetics. Your task is to generate highly targeted, non-generic Pinterest search keywords for building a cohesive and visually strong moodboard.
+
+Analyze the given concept carefully and break it down into its core visual components: style, era, color palette, lighting, composition, textures, materials, typography, and emotional tone. Focus on specificity and relevance — avoid vague or overused keywords.
+
+Generate a refined set of keywords that reflect:
+
+* Distinct visual styles (e.g., brutalist, neo-noir, cyberpunk, editorial minimalism)
+* Time periods or cultural influences (e.g., 90s grunge, Y2K, Bauhaus, retro-futurism)
+* Color and lighting characteristics (e.g., muted tones, high contrast lighting, neon glow)
+* Materials and textures (e.g., chrome surfaces, grainy film, matte paper, glass reflections)
+* Composition and framing (e.g., asymmetrical layout, close-up portrait, wide cinematic shot)
+* Typography styles if relevant (e.g., grotesk type, serif editorial, handwritten script)
+* Niche aesthetic directions (e.g., dystopian UI, analog horror, luxury branding minimalism)
+
+Prioritize long-tail, descriptive keyword phrases (2–5 words) instead of single words. Avoid repetition and filler terms.
+
+Output strictly as a single line of comma-separated keywords. No explanations, no headings, no formatting.
+
+Concept: ${prompt}
+`
 
       const result = await model.generateContent(fullPrompt)
       const response = await result.response
